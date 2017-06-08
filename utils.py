@@ -16,6 +16,6 @@ def format_str(unformat_str, split_by=":"):
         if not re.search('%s'%split_by, kv_param) or not kv_param:
             # print 'split_by:"%s"不存在, kv_param:%s' % (split_by, kv_param)
             continue
-        kv_tuple = tuple(re.split("\s*%s\s*"%split_by, kv_param, 1))
+        kv_tuple = tuple(re.split("\s*%s\s*"%split_by, kv_param.strip(), 1))
         formate_header_kv_list.append('"%s":"%s",' % kv_tuple)
     return """{\n%s\n}""" % "\n".join(formate_header_kv_list)
