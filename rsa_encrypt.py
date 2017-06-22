@@ -24,7 +24,7 @@ def b64tohex(b64_str):
     return hex_str
 
 def rsa_encrypt_by_pubkey(text, pubkey):
-    """ 江苏加密 """
+    """rsa encrypt by public key"""
     rsakey = RSA.importKey(pubkey)
     cipher = Cipher_pkcs1_v1_5.new(rsakey)
     cipher_text = base64.b64encode(cipher.encrypt(text))
