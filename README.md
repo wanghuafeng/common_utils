@@ -1,6 +1,10 @@
 # auth_login_tools
 封装授权登陆时的一些通用方法
 <pre>
+
+1、session_obj_pickle.py   -- session对象持久化到本地，进行断点调试
+2、rsa_encrypt.py    -- rsa 加密相关及前端加密常用函数封装
+
 web抓包工具:Firebug+Httpfox相互补充
 	1、Firebug适用普通跳转抓包，全局搜索，js断点跟踪，当前页面跳转抓包
 	但window.open(url,"_blank");另起开启新的窗口完成跳转时，Firebug的Presist设置会无效，导致跳转页可能会有丢包的情况
