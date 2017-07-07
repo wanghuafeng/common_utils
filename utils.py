@@ -44,11 +44,3 @@ def select_proxy(url, proxies):
             proxy = proxies[proxy_key]
             break
     return proxy
-
-def b64tohex(b64_str):
-    """base64编码转化为16进制"""
-    import binascii
-    import base64
-    b64_decode_str = base64.b64decode(b64_str)
-    hex_str = binascii.b2a_hex(b64_decode_str) #b64_decode_str.encode('hex')
-    return hex_str
