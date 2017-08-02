@@ -11,7 +11,7 @@ import codecs
 配置文件格式:
 host=127.0.0.1
 port=6379
-password=
+password=password
 db=10
 """
 
