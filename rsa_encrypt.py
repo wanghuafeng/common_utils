@@ -6,6 +6,7 @@ import binascii
 import base64
 from Crypto.Cipher import PKCS1_v1_5 as Cipher_pkcs1_v1_5
 from Crypto.PublicKey import RSA
+from binascii import b2a_hex
 
 def rsa_encrypt_ne(text, (n, e)):
     """rsa encrypt by n,e"""
@@ -29,6 +30,12 @@ def rsa_encrypt_by_pubkey(text, pubkey):
     cipher = Cipher_pkcs1_v1_5.new(rsakey)
     cipher_text = base64.b64encode(cipher.encrypt(text))
     return cipher_text
+
+def rsa_encrypt(text, e, n):
+    """rsa no padding加密模式"""
+    text = text[::-1]
+    rs = int(b2a_hex(text), 16) ** int(e, 16) % int(n, 16)
+    return format(rs, 'x').zfill(256)
 
 if __name__ == "__main__":
     modules = long(133577494198148480)
