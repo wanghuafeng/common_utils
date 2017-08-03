@@ -32,3 +32,20 @@ def empty_content_retries(times=3, timeout=2):
                 time.sleep(att)
         return _wrapper
     return decorator
+
+def use_logging(level):
+    """带参数的装饰器"""
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            if level == "warn":
+                print ("level:%s, %s is running" % (level, func.__name__))
+            elif level == "info":
+                print ("level:%s, %s is running" % (level, func.__name__))
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+if __name__ == "__main__":
+    @use_logging(level="warn")
+    def foo(name='foo'):
+        print("i am %s" % name)
