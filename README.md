@@ -3,8 +3,9 @@
 <pre>
 
 1、session_obj_pickle.py   -- session对象持久化到本地，进行断点调试
-2、rsa_encrypt.py    -- rsa 加密相关及前端加密常用函数封装
-3、decorator.py  -- 网络请求的封装器
+2、rsa_encrypt.py    -- rsa 加密相关及前端加密常用函数封装，rsa nopadding封装
+3、decorator.py  -- 网络请求的装饰器
+4、load_config.py -- 文件加载
 
 
 web抓包工具:Firebug+Httpfox相互补充
