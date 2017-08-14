@@ -6,6 +6,8 @@
 2、rsa_encrypt.py    -- rsa 加密相关及前端加密常用函数封装，rsa nopadding封装
 3、decorator.py  -- 网络请求的装饰器
 4、load_config.py -- 文件加载
+5、pressure_test.py  -- 使用gevent压力测试
+6、get_machine_info.py   --获取机器参数
 
 
 web抓包工具:Firebug+Httpfox相互补充
