@@ -51,6 +51,22 @@ print popen.stderr.readl()#打印popen的错误信息
      popen = subprocess.Popen(command, stdout=fileObj, shell=True)#此处将stdout标准输出写入到info.out文件中（stderr同理），
      但是无法在这里设置编码方式，fileObj= codecs.open('info.out', mode='w', encoding='utf-8') popen写入的编码方式依旧是ASCII
 
+关于阻塞与非阻塞子进程使用：
+（1）当父进程不需要获取子进程数据，或者某子进程的操作比较耗时。应该使用非阻塞式，此时即
+	便该子进程运行过程中crash同样不会影响父进程的正常运行，也即，当父进程fork出该子进程
+	以后，他们没有了什么关系。（特殊情况下，通过fabric远程执行操作时，父进程在执行结束后
+	用户便退出，fabric连接断开。但是非阻塞式执行的子进程却可能还没有结束，而在用户退出情
+	况下，该用户执行的所有的进程都会被kill掉。故这种情况下，通过非阻塞式生成的子进程程序
+	必须使用nohup command &来保证当父进程结束切用户退出时，该子进程依旧能够正常进行）
+非阻塞式:subprocess.Popen(command, shell=True)
+	耗时较久的操作，此处为非阻塞式子进程运行，不会影响常规数据流程
+（2）当父进程与子进程有数据交互（进程通讯），或者子进程crash时要求父进程同样
+	中断，此时比较适合阻塞式    
+阻塞式:subprocess.call(command, shell=True)
+	而实际上:subprocess.call(*popenargs, **kwargs)
+	即为 subprocess.Popen(*popenargs, **kwargs).wait()进行了已成封装
+
+另：stdout.read()的数据总是为ASCII（使用popen.stdout.readlines()时可逐行进行decode('utf-8')）
 """
 
 PATH = os.path.dirname(os.path.abspath(__file__))
