@@ -9,6 +9,7 @@ url = 'http://www.baidu.com'
 
 
 class CookiesOpt(object):
+
     def cookie_opt(self):
         """cookie的相关操作"""
         session_obj.cookies.set('key', None)  # 清楚cookie中为key的值

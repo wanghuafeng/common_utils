@@ -9,6 +9,7 @@
 5、pressure_test.py  -- 使用gevent压力测试
 6、get_machine_info.py   --获取机器参数
 7、_requests.py  -- 封装requests相关的一些方法
+8、_subprocess.py    -- 封装subprocess的一些方法及使用是的注意点
 
 web抓包工具:Firebug+Httpfox相互补充
 	1、Firebug适用普通跳转抓包，全局搜索，js断点跟踪，当前页面跳转抓包
