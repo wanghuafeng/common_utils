@@ -61,7 +61,7 @@ print popen.stderr.readl()#打印popen的错误信息
 非阻塞式:subprocess.Popen(command, shell=True)
 	耗时较久的操作，此处为非阻塞式子进程运行，不会影响常规数据流程
 （2）当父进程与子进程有数据交互（进程通讯），或者子进程crash时要求父进程同样
-	中断，此时比较适合阻塞式    
+	中断，此时比较适合阻塞式
 阻塞式:subprocess.call(command, shell=True)
 	而实际上:subprocess.call(*popenargs, **kwargs)
 	即为 subprocess.Popen(*popenargs, **kwargs).wait()进行了已成封装
