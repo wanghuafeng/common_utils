@@ -32,7 +32,7 @@ def check_proxy_ip(ip=''):
 
 def proxy_check():
     proxies = {
-        'all':'60.187.108.9:47586',
+        'all':'60.187.108.99:47586',
     }
     url = 'https://www.sogou.com/web?query=1879875360'
     try:
@@ -41,10 +41,6 @@ def proxy_check():
         print e
         return False
 
-
-# proxy_check()
-# exit()
-
 def asy_gevent_run(thread_count):
     threads = []
     for i in range(thread_count):
@@ -52,11 +48,11 @@ def asy_gevent_run(thread_count):
         threads.append(gevent.spawn(proxy_check))
     gevent.joinall(threads)
     for thread_ret in threads:
-        print thread_ret.value.status_code
+        print thread_ret.value.status_code if thread_ret.value else "err"
     print 'total fail count:%s' % len([item for item in threads if not item.value])
 
 if __name__ == '__main__':
-    thread_count = 10
+    thread_count = 2
     asy_gevent_run(thread_count)
     print 'average time consume:%s' % (total_time/float(thread_count))
 
