@@ -4,6 +4,7 @@ import getpass
 
 """
 获取机器参数的一些函数
+socket相关TCP server
 """
 
 MACHINE_NAME = socket.getfqdn(socket.gethostname())
