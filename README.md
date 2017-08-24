@@ -7,7 +7,7 @@
 3、decorator.py  -- 网络请求的装饰器
 4、load_config.py -- 文件加载
 5、pressure_test.py  -- 使用gevent压力测试
-6、get_machine_info.py   --获取机器参数, socket相关TCP server
+6、_socket.py   --获取机器参数, socket相关TCP server
 7、_requests.py  -- 封装requests相关的一些方法
 8、_subprocess.py    -- 封装subprocess的一些方法及使用是的注意点
 9、ssh_tunnel.py   -- ssh tunnel建立及服务端端口映射转发
