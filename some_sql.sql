@@ -1,4 +1,4 @@
--- 一些SQL统计脚本
+-- 一些SQL统计脚本，高级用法
 
 --- 按天统计省份及通道，分开不同登陆比
 select t1.d 日期, t1.sp_type, t1.channel,  t3.cnt totalCnt,
@@ -44,8 +44,8 @@ where created_time > date_sub(curdate(), interval 0 day)
 group by d
 )t3 on t1.d=t3.d;
 
-SELECT t1.d 按天统计, t1.supplier 运营商, t3.cnt 魔蝎请求用户, t4.cnt 魔蝎成功, t1.cnt amsu请求用户, t2.cnt amsu成功数,
-t4.cnt/t3.cnt 魔蝎登陆比, t2.cnt/t1.cnt amsu登陆比,  (t4.cnt/t3.cnt-t2.cnt/t1.cnt)差值 from
+SELECT t1.d 按天统计, t1.supplier 运营商, t3.cnt 魔请求用户, t4.cnt 魔成功, t1.cnt 请求用户, t2.cnt 成功数,
+t4.cnt/t3.cnt 魔登陆比, t2.cnt/t1.cnt 登陆比,  (t4.cnt/t3.cnt-t2.cnt/t1.cnt)差值 from
 (SELECT  DATE_FORMAT(created_at,'%Y-%m-%d') d, count(DISTINCT phone)cnt, supplier from _spauthtask
 	where  created_at > DATE_SUB(CURDATE(),INTERVAL 6 DAY)  and  sp_type = 4  and supplier = '移动'
 	and auth_type=2 and status != 0
