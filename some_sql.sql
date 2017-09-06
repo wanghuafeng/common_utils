@@ -26,7 +26,7 @@ group by d
 -- 按小时统计当天登陆比
 select t1.d 日期, t1.sp_type, t1.channel,  t3.cnt totalCnt, t1.cnt/t3.cnt 通道占比,
 t1.cnt tryCnt, ifnull(t2.cnt, 0) sucCnt,
-if(ifnull(t2.cnt, 0)/t1.cnt <= 0.8, ifnull(t2.cnt/t1.cnt, 0), '') '小于80%',
+if(ifnull(t2.cnt, 0)/t1.cnt <= 0.8, concat_ws(' -- ', ifnull(t2.cnt/t1.cnt, 0),  t1.sp_type, t1.channel), '') '小于80%',
 if(t2.cnt/t1.cnt > 0.8, t2.cnt/t1.cnt, '') '大于80%'
 from (select date_format(created_time, '%Y-%m-%d %H') d, sp_type, channel, count(distinct phone)cnt
 from _authuser
