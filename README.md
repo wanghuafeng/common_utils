@@ -1,8 +1,7 @@
 # auth_login_tools
 封装授权登陆时的一些通用方法
+* session_obj_pickle.py   -- [session对象持久化到本地，进行断点调试](https://github.com/wanghuafeng/spider_tools/blob/master/session_obj_pickle.py)
 <pre>
-
-1、session_obj_pickle.py   -- [session对象持久化到本地，进行断点调试](https://github.com/wanghuafeng/spider_tools/blob/master/session_obj_pickle.py)
 2、rsa_encrypt.py    -- rsa 加密相关及前端加密常用函数封装，rsa nopadding封装
 3、decorator.py  -- 网络请求的装饰器
 4、load_config.py -- 文件加载
