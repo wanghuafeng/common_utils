@@ -1,24 +1,22 @@
 # auth_login_tools
 封装授权登陆时的一些通用方法
-<pre>
 
-1、session_obj_pickle.py   -- session对象持久化到本地，进行断点调试
-2、rsa_encrypt.py    -- rsa 加密相关及前端加密常用函数封装，rsa nopadding封装
-3、decorator.py  -- 网络请求的装饰器
-4、load_config.py -- 文件加载
-5、pressure_test.py  -- 使用gevent压力测试
-6、_socket.py   --获取机器参数, socket相关TCP server
-7、_requests.py  -- 封装requests相关的一些方法
-8、_subprocess.py    -- 封装subprocess的一些方法及使用是的注意点
-9、ssh_tunnel.py   -- ssh tunnel建立及服务端端口映射转发
-10、some_sql.sql -- 一些统计sql高级用法
+* session_obj_pickle.py   -- [session对象持久化到本地，进行断点调试](https://github.com/wanghuafeng/spider_tools/blob/master/session_obj_pickle.py)
+* rsa_encrypt.py    -- [rsa 加密相关及前端加密常用函数封装，rsa nopadding封装](https://github.com/wanghuafeng/spider_tools/blob/master/rsa_encrypt.py)
+* decorator.py  -- [网络请求的装饰器](https://github.com/wanghuafeng/spider_tools/blob/master/decorator.py)
+* load_config.py -- [文件加载](https://github.com/wanghuafeng/spider_tools/blob/master/load_config.py)
+* _gevent.py  -- [使用gevent压力测试](https://github.com/wanghuafeng/spider_tools/blob/master/_gevent.py)
+* _socket.py   --[获取机器参数, socket相关TCP server](https://github.com/wanghuafeng/spider_tools/blob/master/_socket.py)
+* _requests.py  -- [封装requests相关的一些方法](https://github.com/wanghuafeng/spider_tools/blob/master/_requests.py)
+* _subprocess.py    -- [封装subprocess的一些方法及使用是的注意点](https://github.com/wanghuafeng/spider_tools/blob/master/_subprocess.py)
+* ssh_tunnel.py   -- [ssh tunnel建立及服务端端口映射转发](https://github.com/wanghuafeng/spider_tools/blob/master/ssh_tunnel.py)
+* some_sql.sql -- [一些统计sql高级用法](https://github.com/wanghuafeng/spider_tools/blob/master/some_sql.sql)
+<pre>
 
 web抓包工具:Firebug+Httpfox相互补充
 	1、Firebug适用普通跳转抓包，全局搜索，js断点跟踪，当前页面跳转抓包
 	但window.open(url,"_blank");另起开启新的窗口完成跳转时，Firebug的Presist设置会无效，导致跳转页可能会有丢包的情况
 	2、Httpfox功能可视化展示及断点捕捉较Firebug稍微弱一些，但是却可以弥补Firebug在新窗口跳转时捕获所有网络交互包
-	
-
 
 代理模块使用注意点：
      1、判断网站是否在翻页过程中允许切换IP
