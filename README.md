@@ -12,7 +12,6 @@
 * ssh_tunnel.py   -- [ssh tunnel建立及服务端端口映射转发](https://github.com/wanghuafeng/spider_tools/blob/master/ssh_tunnel.py)
 * some_sql.sql -- [一些统计sql高级用法](https://github.com/wanghuafeng/spider_tools/blob/master/some_sql.sql)
 <pre>
-
 web抓包工具:Firebug+Httpfox相互补充
 	1、Firebug适用普通跳转抓包，全局搜索，js断点跟踪，当前页面跳转抓包
 	但window.open(url,"_blank");另起开启新的窗口完成跳转时，Firebug的Presist设置会无效，导致跳转页可能会有丢包的情况
