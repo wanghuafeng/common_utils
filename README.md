@@ -18,6 +18,10 @@ web抓包工具:Firebug+Httpfox相互补充
 	但window.open(url,"_blank");另起开启新的窗口完成跳转时，Firebug的Presist设置会无效，导致跳转页可能会有丢包的情况
 	2、Httpfox功能可视化展示及断点捕捉较Firebug稍微弱一些，但是却可以弥补Firebug在新窗口跳转时捕获所有网络交互包
 
+针对cookie特殊反爬虫case:
+    1、在cookie之中使用随机数作为key，val则为固定值，服务端对变量key进行校验 (hun)
+
+
 代理模块使用注意点：
      1、判断网站是否在翻页过程中允许切换IP
      2、授权网站的特殊端口限制
