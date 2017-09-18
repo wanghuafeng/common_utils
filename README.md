@@ -1,16 +1,19 @@
 # auth_login_tools
 封装授权登陆时的一些通用方法
 
-* session_obj_pickle.py   -- [session对象持久化到本地，进行断点调试](https://github.com/wanghuafeng/spider_tools/blob/master/session_obj_pickle.py)
-* rsa_encrypt.py    -- [rsa 加密相关及前端加密常用函数封装，rsa nopadding封装](https://github.com/wanghuafeng/spider_tools/blob/master/rsa_encrypt.py)
-* decorator.py  -- [网络请求的装饰器](https://github.com/wanghuafeng/spider_tools/blob/master/decorator.py)
-* load_config.py -- [文件加载](https://github.com/wanghuafeng/spider_tools/blob/master/load_config.py)
-* _gevent.py  -- [使用gevent压力测试](https://github.com/wanghuafeng/spider_tools/blob/master/_gevent.py)
-* _socket.py   --[获取机器参数, socket相关TCP server](https://github.com/wanghuafeng/spider_tools/blob/master/_socket.py)
-* _requests.py  -- [封装requests相关的一些方法](https://github.com/wanghuafeng/spider_tools/blob/master/_requests.py)
-* _subprocess.py    -- [封装subprocess的一些方法及使用是的注意点](https://github.com/wanghuafeng/spider_tools/blob/master/_subprocess.py)
-* ssh_tunnel.py   -- [ssh tunnel建立及服务端端口映射转发](https://github.com/wanghuafeng/spider_tools/blob/master/ssh_tunnel.py)
-* some_sql.sql -- [一些统计sql高级用法](https://github.com/wanghuafeng/spider_tools/blob/master/some_sql.sql)
+* [session对象持久化到本地，进行断点调试](https://github.com/wanghuafeng/spider_tools/blob/master/session_obj_pickle.py)
+* [rsa 加密相关及前端加密常用函数封装，rsa nopadding封装](https://github.com/wanghuafeng/spider_tools/blob/master/rsa_encrypt.py)
+* [网络请求的装饰器](https://github.com/wanghuafeng/spider_tools/blob/master/decorator.py)
+* [文件加载](https://github.com/wanghuafeng/spider_tools/blob/master/load_config.py)
+* [使用gevent压力测试](https://github.com/wanghuafeng/spider_tools/blob/master/_gevent.py)
+* [获取机器参数, socket相关TCP server](https://github.com/wanghuafeng/spider_tools/blob/master/_socket.py)
+* [封装requests相关的一些方法](https://github.com/wanghuafeng/spider_tools/blob/master/_requests.py)
+* [封装subprocess的一些方法及使用是的注意点](https://github.com/wanghuafeng/spider_tools/blob/master/_subprocess.py)
+* [ssh tunnel建立及服务端端口映射转发](https://github.com/wanghuafeng/spider_tools/blob/master/ssh_tunnel.py)
+* [一些统计sql高级用法](https://github.com/wanghuafeng/spider_tools/blob/master/some_sql.sql)
+* [代理存活检测封装工具](https://github.com/wanghuafeng/spider_tools/blob/master/proxy_alive_check_utils.py)
+* [linux一些配置相关查询](https://github.com/wanghuafeng/spider_tools/blob/master/linux_relative.py)
+
 <pre>
 web抓包工具:Firebug+Httpfox相互补充
 	1、Firebug适用普通跳转抓包，全局搜索，js断点跟踪，当前页面跳转抓包
