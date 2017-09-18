@@ -59,7 +59,7 @@ def des_encrypt(data):
 def des_decrypt(data):
     """des解密"""
     IV = "01234567"     #偏转向量
-    KEY = "@xi'an%lvdian#xitongbu~&"     #密钥
+    KEY = "private key"     #密钥
     k = triple_des(KEY, CBC, IV, pad=None, padmode=PAD_PKCS5)
     return k.decrypt(base64.b64decode(data))
 
