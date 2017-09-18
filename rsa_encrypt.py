@@ -4,6 +4,8 @@ rsa 加密相关及一些爬虫可能会用到的加密方法
 """
 import binascii
 import base64
+import hashlib
+from pyDes import *
 from Crypto.Cipher import PKCS1_v1_5 as Cipher_pkcs1_v1_5
 from Crypto.PublicKey import RSA
 from binascii import b2a_hex
@@ -36,6 +38,30 @@ def rsa_encrypt(text, e, n):
     text = text[::-1]
     rs = int(b2a_hex(text), 16) ** int(e, 16) % int(n, 16)
     return format(rs, 'x').zfill(256)
+
+def md5(str):
+    """封装md5处理"""
+    m = hashlib.md5()
+    m.update(str)
+    return m.hexdigest()
+
+def des_encrypt(data):
+    """
+    des加密
+    triple_des()，key Bytes containing the encryption key, must be either 16 or 24 bytes long
+    des(), Bytes containing the encryption key, must be exactly 8 bytes
+    """
+    IV = "01234567"  # 偏转向量
+    KEY = "private key"  # 密钥
+    k = triple_des(KEY, CBC, IV, pad=None, padmode=PAD_PKCS5)
+    return base64.b64encode(k.encrypt(data))
+
+def des_decrypt(data):
+    """des解密"""
+    IV = "01234567"     #偏转向量
+    KEY = "@xi'an%lvdian#xitongbu~&"     #密钥
+    k = triple_des(KEY, CBC, IV, pad=None, padmode=PAD_PKCS5)
+    return k.decrypt(base64.b64decode(data))
 
 if __name__ == "__main__":
     modules = long(133577494198148480)

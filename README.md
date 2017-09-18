@@ -2,7 +2,7 @@
 封装授权登陆时的一些通用方法
 
 * [session对象持久化到本地，进行断点调试](https://github.com/wanghuafeng/spider_tools/blob/master/session_obj_pickle.py)
-* [rsa 加密相关及前端加密常用函数封装，rsa nopadding封装](https://github.com/wanghuafeng/spider_tools/blob/master/rsa_encrypt.py)
+* [rsa(含no padding), des, md5加密、解密封装](https://github.com/wanghuafeng/spider_tools/blob/master/rsa_encrypt.py)
 * [网络请求的装饰器](https://github.com/wanghuafeng/spider_tools/blob/master/decorator.py)
 * [文件加载](https://github.com/wanghuafeng/spider_tools/blob/master/load_config.py)
 * [使用gevent压力测试](https://github.com/wanghuafeng/spider_tools/blob/master/_gevent.py)
