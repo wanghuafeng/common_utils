@@ -49,3 +49,4 @@ if __name__ == "__main__":
     @use_logging(level="warn")
     def foo(name='foo'):
         print("i am %s" % name)
+    foo()

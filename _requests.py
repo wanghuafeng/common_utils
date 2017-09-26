@@ -3,6 +3,14 @@ import requests
 
 """
 封装常用requests的一些方法
+
+1、cookie相关
+    requests接收cookie信息,解析response header中的Set-Cookie参数，使用正则";\s*"去做split，第一个";"前的k=v组合会被视为cookie的key和value
+    其余会被视为应属于"version","expires", "max-age","domain", "path", "port","comment", "commenturl"等参数信息，如果不被识别，则会视为nonstandard_attr
+    放到_rest参数中，也就是说，若响应为
+    "Set-Cookie: ticketID=A; JSESSIONID=779f7c72-0ddb-40b3-b92e-5549973f0a17; UID=e526db86fc844bbab344da199ca06c84; Comment=SessionServer-unity; Path=/; Secure"
+    则response.cookies.get_dict()是{"ticketID":"A"}
+    而真正有效的JSESSIONID，UID为被视为nonstandard_attr而放到rest中，故该session对象在之后的请求会出现异常
 """
 session_obj = requests.Session()
 url = 'http://www.baidu.com'
@@ -10,7 +18,7 @@ url = 'http://www.baidu.com'
 
 class CookiesOpt(object):
     def cookie_opt(self):
-        """cookie的相关操作"""
+        """cookie的相关操作，cookie相关操作在cookielib.py文件中"""
         session_obj.cookies.set('key', None)  # 清楚cookie中为key的值
         session_obj.cookies.set('k', 'v')  # 重置cookie值
         session_obj.cookies.get_dict()  # 取当前session的所有cookie值
