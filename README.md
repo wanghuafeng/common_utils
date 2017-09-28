@@ -13,7 +13,7 @@
 * [一些统计sql高级用法](https://github.com/wanghuafeng/spider_tools/blob/master/some_sql.sql)
 * [代理存活检测封装工具](https://github.com/wanghuafeng/spider_tools/blob/master/proxy_alive_check_utils.py)
 * [linux一些配置相关查询](https://github.com/wanghuafeng/spider_tools/blob/master/linux_relative.py)
-
+* [一些常用算法实现](https://github.com/wanghuafeng/spider_tools/blob/master/arith.py)
 <pre>
 web抓包工具:Firebug+Httpfox相互补充
 	1、Firebug适用普通跳转抓包，全局搜索，js断点跟踪，当前页面跳转抓包
