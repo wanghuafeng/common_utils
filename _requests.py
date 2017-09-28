@@ -76,3 +76,10 @@ class RequestsOpt(object):
             'k': 'v'
         }
         requests.post(url, data=data)
+
+class GetRequestsPrams(object):
+    """
+    获取表单数据: request.form.get("key", type=str, default=None)
+    获取get请求参数: request.args.get("key")
+    获取所有参数: request.values.get("key")
+    """
