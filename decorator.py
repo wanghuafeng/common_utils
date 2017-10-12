@@ -36,6 +36,7 @@ def empty_content_retries(times=3, timeout=2):
 def use_logging(level):
     """带参数的装饰器"""
     def decorator(func):
+        print func.__name__
         def wrapper(*args, **kwargs):
             if level == "warn":
                 print ("level:%s, %s is running" % (level, func.__name__))

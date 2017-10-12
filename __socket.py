@@ -1,18 +1,10 @@
 #!-*- coding:utf-8 -*-
 import socket
-import getpass
 
 """
 获取机器参数的一些函数
 socket相关TCP server
 """
-
-MACHINE_NAME = socket.getfqdn(socket.gethostname())
-username = getpass.getuser()   # 获取用户名
-
-hostname = socket.gethostname()  # 计算机名称, MS-20170412UOGQ
-ip_addr = socket.gethostbyname(hostname)    # 内网IP地址 192.168.1.82
-host_ip = socket.gethostbyname('localhost')  # 127.0.0.1
 
 class Server(object):
     def __init__(self,host,port):

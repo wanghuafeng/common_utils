@@ -140,9 +140,45 @@ class twoSum(object):
             else:
                 d[target-l[i]] = i
 
-class AddTwoNumbers(object):
+class LengthOfLongestSubstring(object):
     """
-    一个整数如342，在链表中存放形式是倒着的（即：2->4->3），
-    再如465，在链表中的存放形式是：5->6->4。
-    将这两个数相加得807，存放到链表中表现为7->0->8。
+    给定一个字符串，找其无重复字符的最长子串的长度。
+    例如：
+        "abcabcbb"的无重复字符的最长子串是"abc"，长度为3
+        "bbbbb"的无重复字符的最长子串是"b"，长度为1
     """
+    def get_length(self, s):
+        """
+        思路：
+            字典中不断更新维护每个字符出现的位置。使用count变量进行计数，当统计的最长子字符串被重复字符破坏时，
+            比较count和max的大小，判断是否需要更新max变量。
+            不管是哪种情况，每次都需要更新map中的信息，并且需要更新count变量
+        """
+        start = maxLength = 0
+        usedChar = {}
+        for i in range(len(s)):
+            if s[i] in usedChar and start <= usedChar[s[i]]:
+                start = usedChar[s[i]] + 1
+            else:
+                maxLength = max(maxLength, i - start + 1)
+
+            usedChar[s[i]] = i
+
+        return maxLength
+
+    def get_length_(self, s):
+        """
+        思路：
+            细化到某一个字符，距上次出现的最大长度
+        """
+        marked_char_dic = {}  # key:字符，value:字符对应index
+        max_length = 0
+        for index in range(len(s)):
+            char = s[index]
+            if marked_char_dic.get(char) is not None:
+                last_index = marked_char_dic.get(char)    # 上次出现位置
+                str_len = index - last_index + 1
+                max_length = str_len if str_len > max_length else max_length
+            marked_char_dic[char] = index
+
+        return max_length

@@ -11,10 +11,12 @@ import requests
     "Set-Cookie: ticketID=A; JSESSIONID=779f7c72-0ddb-40b3-b92e-5549973f0a17; UID=e526db86fc844bbab344da199ca06c84; Comment=SessionServer-unity; Path=/; Secure"
     则response.cookies.get_dict()是{"ticketID":"A"}
     而真正有效的JSESSIONID，UID为被视为nonstandard_attr而放到rest中，故该session对象在之后的请求会出现异常
+2、timeout设置问题
+    默认
 """
+
 session_obj = requests.Session()
 url = 'http://www.baidu.com'
-
 
 class CookiesOpt(object):
     def cookie_opt(self):
@@ -52,7 +54,14 @@ class ProxiesOpt(object):
         return proxies
 
     def use_proxy(self):
+        """作为proxies参数传入"""
         requests.get(url, proxies=self.proxies)
+
+    # def use_proxy_1(self):
+
+po = ProxiesOpt()
+po.use_proxy()
+
 
 class RequestsOpt(object):
     def _get(self):
