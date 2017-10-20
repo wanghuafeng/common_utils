@@ -12,7 +12,7 @@ import requests
     则response.cookies.get_dict()是{"ticketID":"A"}
     而真正有效的JSESSIONID，UID为被视为nonstandard_attr而放到rest中，故该session对象在之后的请求会出现异常
 2、timeout设置问题
-    默认
+    默认connect timeout=15
 """
 
 session_obj = requests.Session()
@@ -58,9 +58,6 @@ class ProxiesOpt(object):
         requests.get(url, proxies=self.proxies)
 
     # def use_proxy_1(self):
-
-po = ProxiesOpt()
-po.use_proxy()
 
 
 class RequestsOpt(object):

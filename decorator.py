@@ -2,7 +2,7 @@
 import time
 
 def retries(times=3, timeout=1):
-    """ 网络请求装饰器 """
+    """对未捕获异常进行重试"""
     def decorator(func):
         def _wrapper(*args, **kw):
             att, retry = 0, 0
@@ -19,7 +19,7 @@ def retries(times=3, timeout=1):
     return decorator
 
 def empty_content_retries(times=3, timeout=2):
-    """ 网络请求装饰器 """
+    """响应为空的进行重试"""
     def decorator(func):
         def _wrapper(*args, **kw):
             att, retry = 0, 0

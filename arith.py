@@ -148,12 +148,6 @@ class LengthOfLongestSubstring(object):
         "bbbbb"的无重复字符的最长子串是"b"，长度为1
     """
     def get_length(self, s):
-        """
-        思路：
-            字典中不断更新维护每个字符出现的位置。使用count变量进行计数，当统计的最长子字符串被重复字符破坏时，
-            比较count和max的大小，判断是否需要更新max变量。
-            不管是哪种情况，每次都需要更新map中的信息，并且需要更新count变量
-        """
         start = maxLength = 0
         usedChar = {}
         for i in range(len(s)):
@@ -171,14 +165,14 @@ class LengthOfLongestSubstring(object):
         思路：
             细化到某一个字符，距上次出现的最大长度
         """
-        marked_char_dic = {}  # key:字符，value:字符对应index
-        max_length = 0
+        if not s: return 0
+        marked_char_dic = {}
+        max_length = 1
         for index in range(len(s)):
             char = s[index]
             if marked_char_dic.get(char) is not None:
-                last_index = marked_char_dic.get(char)    # 上次出现位置
-                str_len = index - last_index + 1
+                str_len = index - marked_char_dic.get(char)
                 max_length = str_len if str_len > max_length else max_length
             marked_char_dic[char] = index
-
         return max_length
+print LengthOfLongestSubstring().get_length_('aab')
