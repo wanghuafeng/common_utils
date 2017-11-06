@@ -54,15 +54,39 @@ def deamon_tst():
         thread_list = []
         for i in xrange(50):
             t = threading.Thread(target=action, args=(i,))
-            t.setDaemon(True)  # 设置线程为后台线程
+            t.daemon=True
             t.start()
-            thread_list.append(t)
+            # thread_list.append(t)
 
-        for thread in thread_list:
-            print thread.getName()
-            thread.join() # 调用json()阻塞至子进程结束
+        # for thread in thread_list:
+        #     print thread.getName()
+            # thread.join() # 调用json()阻塞至子进程结束
     st = time.time()
     # deamon_false()
     deamon_true()
     print time.time() - st
 # deamon_tst()
+
+"""
+1、如果某个子线程的daemon属性为False，主线程结束时会检测该子线程是否结束，
+   如果该子线程还在运行，则主线程会等待它完成后再退出；
+2、如果某个子线程的daemon属性为True，主线程运行结束时不对这个子线程进行检查而直接退出，
+   同时所有daemon值为True的子线程将随主线程一起结束，而不论是否运行完成。
+   属性daemon的值默认为False，如果需要修改，必须在调用start()方法启动线程之前进行设置。
+   另外要注意的是，上面的描述并不适用于IDLE环境中的交互模式或脚本运行模式，因为在该环境中的主线程只有在退出Python IDLE时才终止。
+"""
+
+import time
+import threading
+
+def fun():
+    print "start fun"
+    time.sleep(2)
+    print "end fun"
+
+print "main thread"
+t1 = threading.Thread(target=fun,args=())
+# t1.setDaemon(True)
+t1.start()
+time.sleep(1)
+print "main thread end"

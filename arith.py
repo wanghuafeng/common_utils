@@ -155,9 +155,7 @@ class LengthOfLongestSubstring(object):
                 start = usedChar[s[i]] + 1
             else:
                 maxLength = max(maxLength, i - start + 1)
-
             usedChar[s[i]] = i
-
         return maxLength
 
     def get_length_(self, s):
@@ -175,4 +173,43 @@ class LengthOfLongestSubstring(object):
                 max_length = str_len if str_len > max_length else max_length
             marked_char_dic[char] = index
         return max_length
-print LengthOfLongestSubstring().get_length_('aab')
+
+# print LengthOfLongestSubstring().get_length_('aab')
+def insert_sort(lists):
+    """
+    设有一组关键字｛K1， K2，…， Kn｝；排序开始就认为 K1 是一个有序序列；让 K2 插入上述表长为 1 的有序序列，使之成为一个表长为 2 的有序序列；然后让 K3 插入上述表长为 2 的有序序列，使之成为一个表长为 3 的有序序列；依次类推，最后让 Kn 插入上述表长为 n-1 的有序序列，得一个表长为 n 的有序序列。
+    具体算法描述如下：
+        从第一个元素开始，该元素可以认为已经被排序
+        取出下一个元素，在已经排序的元素序列中从后向前扫描
+        如果该元素（已排序）大于新元素，将该元素移到下一位置
+        重复步骤 3，直到找到已排序的元素小于或者等于新元素的位置
+        将新元素插入到该位置后
+        重复步骤 2~5
+    """
+    count = len(lists)
+    for i in range(1, count):
+        key = lists[i]
+        j = i - 1
+        while j >= 0:
+            if lists[j] > key:
+                lists[j + 1] = lists[j]
+                lists[j] = key
+            j -= 1
+    return lists
+
+
+def bubble_sort(lists):
+    """
+    冒泡排序（Bubble Sort，台湾译为：泡沫排序或气泡排序）是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。
+    冒泡排序算法的流程如下：
+        比较相邻的元素。如果第一个比第二个大，就交换他们两个。
+        对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。
+        针对所有的元素重复以上的步骤，除了最后一个。
+        持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。
+    """
+    count = len(lists)
+    for i in range(0, count):
+        for j in range(i + 1, count):
+            if lists[i] > lists[j]:
+                lists[i], lists[j] = lists[j], lists[i]
+    return lists

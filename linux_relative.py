@@ -13,6 +13,12 @@ grep MemTotal /proc/meminfo | cut -f2 -d:
 free -m |grep "Mem" | awk '{print $2}'
 
 三：查看当前linux的版本
-cat /etc/redhat-release
+cat /proc/version
+redhat:
+    cat /etc/redhat-release
+四：ubuntu关闭防火墙:
+ufw disable
+开启防火墙
+ufw enable
 
 """
