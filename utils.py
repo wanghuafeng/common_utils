@@ -44,3 +44,5 @@ def select_proxy(url, proxies):
             proxy = proxies[proxy_key]
             break
     return proxy
+
+ip_pattern = r'((?:\d{1,3}\.){3}\d{1,3}\:\d+)'
