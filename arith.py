@@ -1,5 +1,95 @@
 #!-*- coding:utf-8 -*-
+"""
+--------------------readline,readlines,read占用内存分析---------------------------
+原始语料：546M
+1.readlines()
+    with codecs.open(combine_bigram_remove_freq_1_filename, encoding='utf-8') as f:
+        temp_list = [item for item in f.readlines()]
+CPU usage：34.6% ==> 61.7%
+占用内存：2.168G
+耗时：5.66499996185s
+2.
+    with codecs.open(combine_bigram_remove_freq_1_filename, encoding='utf-8') as f:
+        temp_list = [item for item in f]
+CPU usage：35.3% ==> 62.0%
+占用内存：2.136G
+耗时：48.2940001488s
+3.read()
+    with codecs.open(combine_bigram_remove_freq_1_filename, encoding='utf-8') as f:
+        temp_str =f.read()
+CPU usage：30.4% ==> 36.3%
+占用内存：0.48G
+耗时：48.2940001488s
+4.readline()
+f = codecs.open(filename, encoding='utf-8')
+start_time = time.time()
+while 1:
+    line = f.readline()
+    if not line:
+        end_time = time.time()
+        print end_time-start_time
+        break
+耗时：50.6809999943
+--------------------字典for in 性能测试---------------------------
+d = {}
+for i in range(100000000):
+    d['%s'%i] = None
+print len(d)#100000000
+start_time = time.time()
+print 'a' in d#False
+print "in time consume: ", time.time() - start_time#in time consume:  0.0
 
+start_time = time.time()
+print d.get('a')     #None
+print "get: ", time.time() - start_time     #get:  0.0
+
+start_time = time.time()
+print 'a' in d.keys()#False
+print 'd.keys time consume: ', time.time() - start_time#d.keys time consume:  9.39199995995
+
+测试结论：
+     1、使用字典的in操作查找的时间复杂度为O(1)
+     2、get操作的时间负责度为O(1)
+
+--------------------python write, writelines性能分析--------------------------
+准备数据：1G文本数据(共：5193374行)
+1.write()
+with open() as wf:
+  wf.write(line)
+性能分析：写数据耗时：13.094s
+写入速度：6610.373708059671（行/秒）
+
+2.writelines()
+with open() as wf:
+  wf.writelines([line_list])
+性能分析：写数据耗时：8.226s
+若对line_list进行列表解析操作，遍历1G列表耗时：0.4s     (5,193,374行)
+写入速度：10522.27490072129（行/秒）
+
+3.fileObj = open()
+fileObj.write()
+性能分析：写数据耗时：12.812s
+
+对比1、3可知，with操作在对每行文件写操作完成以后有额外的操作：__exit__()将wf资源释放
+--------------------python数据结构内存占用分析-----------------------
+字典（dict）：
+原始语料：546M
+CPU usage：36.7% ==> 76.9%
+占用内存3.2G     （占用空间为原始语料的6倍）
+查找时间复杂度：O(1)
+
+集合（set）：
+原始语料：546M
+CPU usage：34.6%==>70.6%
+占用内存：2.88G     （占用空间为原始语料的5.4倍）
+查找时间复杂度：O(1)
+
+数组（List）：
+原始语料：546M
+CPU usage：34.9%==>60.6%
+占用内存：2.05G     （占用空间为原始语料的3.85倍）
+查找时间复杂度：O(n)
+"""
 class BinaryTreeNode:
     """
     二叉树查找的性质：
@@ -177,14 +267,7 @@ class LengthOfLongestSubstring(object):
 # print LengthOfLongestSubstring().get_length_('aab')
 def insert_sort(lists):
     """
-    设有一组关键字｛K1， K2，…， Kn｝；排序开始就认为 K1 是一个有序序列；让 K2 插入上述表长为 1 的有序序列，使之成为一个表长为 2 的有序序列；然后让 K3 插入上述表长为 2 的有序序列，使之成为一个表长为 3 的有序序列；依次类推，最后让 Kn 插入上述表长为 n-1 的有序序列，得一个表长为 n 的有序序列。
-    具体算法描述如下：
-        从第一个元素开始，该元素可以认为已经被排序
-        取出下一个元素，在已经排序的元素序列中从后向前扫描
-        如果该元素（已排序）大于新元素，将该元素移到下一位置
-        重复步骤 3，直到找到已排序的元素小于或者等于新元素的位置
-        将新元素插入到该位置后
-        重复步骤 2~5
+    从左到右遍历数组, 将每个元素插入它左边已排好序数组
     """
     count = len(lists)
     for i in range(1, count):
@@ -200,12 +283,7 @@ def insert_sort(lists):
 
 def bubble_sort(lists):
     """
-    冒泡排序（Bubble Sort，台湾译为：泡沫排序或气泡排序）是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。
-    冒泡排序算法的流程如下：
-        比较相邻的元素。如果第一个比第二个大，就交换他们两个。
-        对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。
-        针对所有的元素重复以上的步骤，除了最后一个。
-        持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。
+    两层循环
     """
     count = len(lists)
     for i in range(0, count):
@@ -213,3 +291,23 @@ def bubble_sort(lists):
             if lists[i] > lists[j]:
                 lists[i], lists[j] = lists[j], lists[i]
     return lists
+
+def quick_sort(arr):
+    less = []
+    pivotList = []
+    more = []
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[0]      #将第一个值做为基准
+        for i in arr:
+            if i < pivot:
+                less.append(i)
+            elif i > pivot:
+                more.append(i)
+            else:
+                pivotList.append(i)
+
+        less = quick_sort(less)      #得到第一轮分组之后，继续将分组进行下去。
+        more = quick_sort(more)
+        return less + pivotList + more

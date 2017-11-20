@@ -81,12 +81,15 @@ import threading
 
 def fun():
     print "start fun"
-    time.sleep(2)
+    # time.sleep(2)
     print "end fun"
+    return 'aaaaaa'
 
 print "main thread"
 t1 = threading.Thread(target=fun,args=())
-# t1.setDaemon(True)
+t1.setDaemon(True)
 t1.start()
-time.sleep(1)
-print "main thread end"
+t1.join()
+
+# time.sleep(1)
+# print "main thread end"
