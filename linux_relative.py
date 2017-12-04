@@ -16,7 +16,13 @@ free -m |grep "Mem" | awk '{print $2}'
 cat /proc/version
 redhat:
     cat /etc/redhat-release
-四：ubuntu关闭防火墙:
+
+四:centos安装python3
+sudo yum install -y epel-release
+sudo yum install -y python34
+
+
+五:ubuntu关闭防火墙:
 ufw disable
 开启防火墙
 ufw enable
