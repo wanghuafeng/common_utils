@@ -148,9 +148,7 @@ class BiSearch(object):
         return False
 
     def search(self, l, val, s, e):
-        """
-        递归方式
-        """
+        """递归方式"""
         if s > e:
             return False
         mid = (s + e) / 2

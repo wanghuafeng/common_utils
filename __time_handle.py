@@ -13,12 +13,13 @@ def convert_2_timestamp():
     print time_interval
 
 
-def convert_2_datetime():
+def convert_2_datetime(timestring):
     """通过转化为datetime类型"""
     from dateutil import parser
     import datetime
-    timestring = '2017-12-04 11:13:01'
     converted_timestring = parser.parse(timestring)
     current_datetime = datetime.datetime.now()
     interval_second = (current_datetime-converted_timestring).seconds
-    print interval_second
+    return interval_second
+timestring = '2017-12-04 11:13:01'
+print convert_2_datetime(timestring)
