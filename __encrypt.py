@@ -2,6 +2,9 @@
 """
 rsa 加密相关及一些爬虫可能会用到的加密方法
 """
+import os
+import execjs
+import codecs
 import binascii
 import base64
 import hashlib
@@ -75,7 +78,21 @@ def des_decrypt(data):
     k = triple_des(KEY, CBC, IV, pad=None, padmode=PAD_PKCS5)
     return k.decrypt(base64.b64decode(data))
 
+def des_encrypt_by_js(data, key1="YHXWWLKJYXGS",key2="ZFCHHYXFL10C",key3="DES"):
+    """调用javascript封装DES通用加密算法"""
+    des_js_filename = './js/des.js'
+    assert os.path.isfile(des_js_filename)
+    js_content = codecs.open(des_js_filename, encoding='utf-8').read()
+    ctx = execjs.compile(js_content)
+    en_str = ctx.call('strEnc', str(data), key1, key2, key3)
+    return en_str
+
 if __name__ == "__main__":
+    k1 = ''
+    k2 = ''
+    k3 = ''
+    data = '41234123412342'
+    print des_encrypt_by_js(data, k1, k2, k3)
     modules = long(133577494198148480)
     expotent = long(65537)
     text = 'test'

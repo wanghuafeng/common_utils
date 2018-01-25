@@ -14,13 +14,14 @@ class LoggerMsgAdapter(LoggerAdapter):
 
     def process(self, msg, kwargs):
         kwargs["extra"] = self.logger.extra
+        adapter_msg = ""
         for _ in range(1):
             if not isinstance(self.adapter_param, dict):
                 self.logger.error('log adapter params not dict, adapter_param=%s' % self.adapter_param)
                 break
             try:
                 adapter_msg = ''.join(['{}={}\t'.format(k, v) for k, v in self.adapter_param.items()])
-                msg = '%s\tmsg=%s' % (adapter_msg, msg)
             except BaseException as e:
                 self.logger.error('init log adapter failed, err_msg=%s' % e)
+        msg = '%s%s' % (adapter_msg, msg)
         return msg, kwargs
