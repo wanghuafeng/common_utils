@@ -89,3 +89,12 @@ class GetRequestsPrams(object):
     获取get请求参数: request.args.get("key")
     获取所有参数: request.values.get("key")
     """
+
+
+def forbidden_secure_warning():
+    """
+    禁用安全请求警告
+    在session.verify=False即关闭SSL校验时，会有安全warning信息提醒
+    """
+    from requests.packages.urllib3.exceptions import InsecureRequestWarning
+    requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
