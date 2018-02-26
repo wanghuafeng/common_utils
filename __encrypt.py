@@ -87,6 +87,26 @@ def des_encrypt_by_js(data, key1="YHXWWLKJYXGS",key2="ZFCHHYXFL10C",key3="DES"):
     en_str = ctx.call('strEnc', str(data), key1, key2, key3)
     return en_str
 
+def enctypt_call_by_js(version, id_card):
+    """execjs 执行js函数"""
+    import execjs
+    js_content = '''function abcMd5(s, s2) {
+        s = s.replace(/\./g, "");
+        var hhz = "9853398" + s + "7291166723";
+        var len = hhz.length;
+        var len2 = s2.length;
+        if (len2 >= 18) {
+            hhz = hhz.substring(6, 9) + s2.substring(4, 7) + hhz.substring(0, 4) + s2.substring(0, 4) + hhz.substring(len - 5) + s2.substring(11, 15) + hhz.substring(3, 7) + s2.substring(11) + hhz.substring(10, 14)
+        } else if (len2 >= 10 && len < 18) {
+            hhz = hhz.substring(6, 9) + s2.substring(4, 7) + hhz.substring(0, 4) + s2.substring(0, 4) + hhz.substring(len - 5) + s2.substring(11, 15) + hhz.substring(3, 7) + s2.substring(11) + hhz.substring(10, 14)
+        }
+        return hhz
+    }
+    '''
+    ctx = execjs.compile(js_content)
+    en_str = ctx.call('abcMd5', version, id_card)
+    return en_str
+
 if __name__ == "__main__":
     k1 = ''
     k2 = ''

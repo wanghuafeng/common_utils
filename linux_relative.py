@@ -38,16 +38,39 @@ locate       配 合数据库查看文件位置
 find          实际搜寻硬盘查询文件名称
 
 关于ubuntu开机启动相关
-1、/etc/profile:在登录时,操作系统定制用户环境时使用的第一个文件,此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行。
-2、/etc/environment:在登录时操作系统使用的第二个文件,系统在读取你自己的profile前,设置环境文件的环境变量。
-3、~/.bash_profile:在登录时用到的第三个文件是.bash_profile文件,每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件。/etc/bash.bashrc:为每一个运行bash shell的用户执行此文件，当bash shell被打开时，该文件被读取。
-4、~/.bashrc:该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该该文件被读取。
-几个文件的优先级:1>2>3
-在linux下，如果是bash环境，用户登录时读取设置文件的顺序是/etc/profile －－> ~/.bash_profile －－> ~/.bashrc －－> /etc/bash.bashrc。注意在~/.bash_profile这一步，如果没有~/.bash_profile ，则默认读取~/.bash_login，如果没有~/.bash_login 才读取~/.profile。
-根据发行版本的情况，有两个基本的系统级配置文件：/etc/bash.bashrc和/etc/profile。这些配置文件包含两组不同的变量：shell变量和环境变量。前者只是在特定的shell中固定（如bash），后者在不同shell中固定。shell变量是局部的，而环境变量是全局的。
-注意：尽量避免修改root用户的环境变量配置文件，因为那样可能会造成潜在的危险。最好不要把当前路径”./”放到PATH里，这样可能会受到意想不到的攻击。
-使用：
-把设置的环境变量给所有用户使用：/etc/bashrc；/etc/profile
-修改全局的环境变量在/etc/profile
-修改某个用户的环境变量在/home/用户名/.bash_profile
+（1）/etc/profile
+全局（公有）配置，不管是哪个用户，登录时都会读取该文件。
+
+（2）/ect/bashrc
+Ubuntu没有此文件，与之对应的是/ect/bash.bashrc
+它也是全局（公有）的
+bash执行时，不管是何种方式，都会读取此文件。
+
+（3）~/.profile
+若bash是以login方式执行时，读取~/.bash_profile，若它不存在，则读取~/.bash_login，若前两者不存在，读取~/.profile。
+另外，图形模式登录时，此文件将被读取，即使存在~/.bash_profile和~/.bash_login。
+
+（4）~/.bash_login
+若bash是以login方式执行时，读取~/.bash_profile，若它不存在，则读取~/.bash_login，若前两者不存在，读取~/.profile。
+
+（5）~/.bash_profile
+Unbutu默认没有此文件，可新建。
+只有bash是以login形式执行时，才会读取此文件。通常该配置文件还会配置成去读取~/.bashrc。
+
+（6）~/.bashrc
+当bash是以non-login形式执行时，读取此文件。若是以login形式执行，则不会读取此文件。
+
+（7）~/.bash_logout
+注销时，且是longin形式，此文件才会读取。也就是说，在文本模式注销时，此文件会被读取，图形模式注销时，此文件不会被读取。
+
+下面是在本机的几个例子：
+1. 图形模式登录时，顺序读取：/etc/profile和~/.profile
+2. 图形模式登录后，打开终端时，顺序读取：/etc/bash.bashrc和~/.bashrc
+3. 文本模式登录时，顺序读取：/etc/bash.bashrc，/etc/profile和~/.bash_profile
+4. 从其它用户su到该用户，则分两种情况：
+（1）如果带-l参数（或-参数，--login参数），如：su -l username，则bash是lonin的，它将顺序读取以下配置文件：/etc/bash.bashrc，/etc/profile和~/.bash_profile。
+（2）如果没有带-l参数，则bash是non-login的，它将顺序读取：/etc/bash.bashrc和~/.bashrc
+5. 注销时，或退出su登录的用户，如果是longin方式，那么bash会读取：~/.bash_logout
+6. 执行自定义的shell文件时，若使用“bash -l a.sh”的方式，则bash会读取行：/etc/profile和~/.bash_profile，若使用其它方式，如：bash a.sh， ./a.sh，sh a.sh（这个不属于bash shell），则不会读取上面的任何文件。
+7. 上面的例子凡是读取到~/.bash_profile的，若该文件不存在，则读取~/.bash_login，若前两者不存在，读取~/.profile。
 """
