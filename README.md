@@ -1,6 +1,6 @@
 # auth_login_tools
 封装授权登陆时的一些通用方法
-
+* [授权抓取时，多张图片验证码合并问题](https://github.com/wanghuafeng/spider_tools/blob/master/image_merge.py)
 * [session对象持久化到本地，进行断点调试](https://github.com/wanghuafeng/spider_tools/blob/master/session_obj_pickle.py)
 * [rsa(含no padding), des, md5加密、解密封装](https://github.com/wanghuafeng/spider_tools/blob/master/__encrypt.py)
 * [日志封装器](https://github.com/wanghuafeng/spider_tools/blob/master/__logger.py)
