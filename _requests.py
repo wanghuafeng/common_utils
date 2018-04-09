@@ -98,3 +98,27 @@ def forbidden_secure_warning():
     """
     from requests.packages.urllib3.exceptions import InsecureRequestWarning
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+def ResponseOpt():
+    """
+    response具体实现:https://github.com/requests/requests/blob/master/requests/models.py
+    requests.models.Response()为False的情况，此时resp对象的所有属性仍旧可用，只是bool值被置为了False
+    发送http请求时，如果
+        1.200 <= status_code < 400, 则resp的bool值为True
+        2.400 <= status_code < 600, 则resp的bool值为False   (此时resp对象中的content/json/raw等属性全部可用)
+    例:
+        resp = requests.get('http://www.baidu.com')
+        if resp.status_code > 200 and resp_status < 400:
+            assert(resp, True)
+        elif resp.status_code >= 400 and resp_status < 600:
+            assert(resp, False)
+
+    一般情况下，实现层使用resp时倾向于使用True/False来判断该对象是否可用
+    如果这里需要对各种status_code同等对待，则只需要把status_code置为True区间即可
+    即:
+        resp = requests.get('http://www.baidu.com')
+        if resp.status_code== 400:  # status_code为400
+            assert(resp, False)     # 此时resp为False
+            resp.status_code = 201       # 重置 status_code为201，即True区间
+            assert(resp, True)  # 此时resp就变为False了
+    """
