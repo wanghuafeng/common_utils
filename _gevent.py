@@ -6,7 +6,7 @@ import requests
 import gevent.monkey
 gevent.monkey.patch_socket()
 
-TIMEOUT = 1
+TIMEOUT = (2, 2)
 total_time = 0
 
 """
@@ -32,11 +32,11 @@ def check_proxy_ip(ip=''):
 
 def proxy_check():
     proxies = {
-        'all':'60.187.108.99:47586',
+        'all':'139.198.124.113:9000',
     }
     url = 'https://www.sogou.com/web?query=1879875360'
     try:
-        return requests.get(url, proxies=proxies, timeout=5)
+        return requests.get(url, proxies=proxies, timeout=TIMEOUT)
     except BaseException, e:
         print e
         return False
