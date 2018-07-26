@@ -21,5 +21,11 @@ def convert_2_datetime(timestring):
     current_datetime = datetime.datetime.now()
     interval_second = (current_datetime-converted_timestring).seconds
     return interval_second
-timestring = '2017-12-04 11:13:01'
-print convert_2_datetime(timestring)
+# timestring = '2017-12-04 11:13:01'
+# print convert_2_datetime(timestring)
+
+
+
+import datetime
+yesterday = datetime.datetime.now() - datetime.timedelta(days=3)
+print yesterday.strftime('%Y_%m_%d')
