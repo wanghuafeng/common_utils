@@ -1,6 +1,7 @@
 #!-*- coding:utf-8 -*-
 import time
 
+
 def retries(times=3, timeout=1):
     """对未捕获异常进行重试"""
     def decorator(func):
@@ -10,13 +11,13 @@ def retries(times=3, timeout=1):
                 retry += 1
                 try:
                     return func(*args, **kw)
-                except Exception as e:
+                except:
                     att += timeout
-                    time.sleep(att)
-
+                    if retry < times:
+                        time.sleep(att)
         return _wrapper
-
     return decorator
+
 
 def empty_content_retries(times=3, timeout=2):
     """响应为空的进行重试"""
@@ -32,6 +33,7 @@ def empty_content_retries(times=3, timeout=2):
                 time.sleep(att)
         return _wrapper
     return decorator
+
 
 def use_logging(level):
     """带参数的装饰器"""
