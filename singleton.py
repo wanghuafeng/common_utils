@@ -12,9 +12,11 @@ class Singleton(type):
 class Base():
     __metaclass__ = Singleton
 
-m1 = Base()
-m2 = Base()
-print id(m1) == id(m2)
+
+if __name__ == "__main__":
+    m1 = Base()
+    m2 = Base()
+    print id(m1) == id(m2)
 
 
 # 装饰器方法实现
@@ -30,6 +32,7 @@ def singleton(cls, *args, **kw):
 class Base():
     pass
 
-m1 = Base()
-m2 = Base()
-print id(m1) == id(m2)
+if __name__ == "__main__":
+    m1 = Base()
+    m2 = Base()
+    print id(m1) == id(m2)

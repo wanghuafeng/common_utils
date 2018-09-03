@@ -25,3 +25,28 @@ class LoggerMsgAdapter(LoggerAdapter):
                 self.logger.error('init log adapter failed, err_msg=%s' % e)
         msg = '%s%s' % (adapter_msg, msg)
         return msg, kwargs
+
+
+import logging
+import os
+
+PATH = os.path.abspath(os.path.dirname(__file__))
+log_filename = r'p2p.log'
+
+logging.basicConfig(
+    filename=os.path.join(PATH, log_filename),
+    format='[%(levelname)s %(asctime)s] %(message)s',
+    level=logging.INFO,
+)
+
+def get_console_handler():
+    console = logging.StreamHandler()
+    formatter = logging.Formatter('[%(levelname)s %(asctime)s] %(message)s')
+    console.setFormatter(formatter)
+    console.setLevel(logging.INFO)
+    return console
+
+logger = logging.getLogger(__name__)
+logger.addHandler(get_console_handler())
+
+logger.info('-----------')
