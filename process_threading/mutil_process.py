@@ -35,7 +35,7 @@ def deamon_tst():
         '''主线程执行过程中，前台线程也在进行，主线程执行完毕后，等待前台线程也执行完成后，程序停止'''
         def action(arg):
             time.sleep(2)
-            print  'sub thread start!the thread name is:%s\r' % threading.currentThread().getName()
+            # print  'sub thread start!the thread name is:%s\r' % threading.currentThread().getName()
             print 'the arg is:%s\r' % arg
             time.sleep(1)
 
@@ -62,11 +62,11 @@ def deamon_tst():
         #     print thread.getName()
             # thread.join() # 调用json()阻塞至子进程结束
     st = time.time()
-    # deamon_false()
-    deamon_true()
+    deamon_false()
+    # deamon_true()
     print time.time() - st
-# deamon_tst()
-
+deamon_tst()
+exit()
 """
 1、如果某个子线程的daemon属性为False，主线程结束时会检测该子线程是否结束，
    如果该子线程还在运行，则主线程会等待它完成后再退出；

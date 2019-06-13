@@ -309,3 +309,25 @@ def quick_sort(arr):
         less = quick_sort(less)      #得到第一轮分组之后，继续将分组进行下去。
         more = quick_sort(more)
         return less + pivotList + more
+
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        26题
+        :type nums: List[int]
+        :rtype: int
+        """
+        # 删除列表中的重复项，返回操作后的长度
+        # [1,1,1,2,3,4,4,4,5] -> [1,2,3,4,5] 5
+        # 维护2个索引，慢的s，快的f；s指向第一个元素，f的指向第二个元素;
+        # 判断f和f前一个元素是否相等，相等则f后移；不等则s后移一个，值给s，然后f也后移
+        if len(nums) <= 1:
+            return len(nums)
+
+        s = 0
+
+        for f in range(1, len(nums)):
+            if nums[s] != nums[f]:
+                s += 1
+                nums[s] = nums[f]
+        return s + 1
